@@ -1,0 +1,29 @@
+% unicodeは、hyperrefへの指定で、pdfのメタデータにあるタイトルの文字化けを防ぐ
+% ptは細かい指定はできないらしい
+% A cheat sheet
+% https://www.cpt.univ-mrs.fr/~masson/latex/Beamer-appearance-cheat-sheet.pdf
+\documentclass[unicode, 14pt, aspectratio=169]{beamer}
+\usetheme{titech}
+ \date{\today}
+\title{Highly Available Transactions: \\Virtues and Limitations}
+\author{\texttt{ryotaro612}}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\begin{document}
+\begin{frame}[noframenumbering, plain]
+\titlepage
+\end{frame}
+\section{Jepsen}
+\begin{frame}
+  \frametitle{Jepsen フォールトインジェクションフレームワーク}
+  {\large 型理論に関わる分野の紹介}
+  All in the golden afternoon
+\end{frame}
+
+\end{document}
