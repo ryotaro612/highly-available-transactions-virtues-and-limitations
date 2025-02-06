@@ -4,10 +4,9 @@
 % https://www.cpt.univ-mrs.fr/~masson/latex/Beamer-appearance-cheat-sheet.pdf
 \documentclass[unicode, 14pt, aspectratio=169]{beamer}
 \usetheme{titech}
- \date{\today}
-\title{Highly Available Transactions: \\Virtues and Limitations}
+\date{\today}
+\title{一貫性と可用性の分類学}
 \author{\texttt{ryotaro612}}
-
 \newcommand\blfootnote[1]{%
   \begingroup
   \renewcommand\thefootnote{}\footnote{#1}%
@@ -20,10 +19,25 @@
 \titlepage
 \end{frame}
 \section{Jepsen}
-\begin{frame}
-  \frametitle{Jepsen フォールトインジェクションフレームワーク}
-  {\large 型理論に関わる分野の紹介}
-  All in the golden afternoon
+\begin{frame}[t]
+  \frametitle{Jepsen: 分散システムのテストフレームワーク}
+  {\large Jepsenはフォールトインジェクションを効率化する}
 \end{frame}
-
+\begin{frame}[t]
+  \frametitle{Jepsenの高い認知}
+  {\large 今日までに45のストレージがテストされた}
+  \par
+  テスト対象側のetcdからもJepsenに言及がある
+\end{frame}
+\begin{frame}[t]
+  \frametitle{テスト対象を評価するときの課題}
+  {\large 一貫性と可用性のありえるペアを決めること}
+  % capが粒度が小さいことを意味しよう
+\end{frame}
+\section{一貫性と可用性のパターン}
+\begin{frame}[t]
+  \frametitle{a}
+  {\large 一貫性と可用性のありえるペアを決めること}
+  % capが粒度が小さいことを意味しよう
+\end{frame}
 \end{document}
