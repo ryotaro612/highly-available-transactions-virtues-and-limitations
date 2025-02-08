@@ -4,8 +4,9 @@
 % https://www.cpt.univ-mrs.fr/~masson/latex/Beamer-appearance-cheat-sheet.pdf
 \documentclass[unicode, 14pt, aspectratio=169]{beamer}
 \usetheme{titech}
+\addbibresource{main.bib}
 \date{\today}
-\title{一貫性と可用性の分類学}
+\title{一貫性と可用性によるシステムの分類}
 \author{\texttt{ryotaro612}}
 \newcommand\blfootnote[1]{%
   \begingroup
@@ -20,7 +21,7 @@
 \end{frame}
 \section{Jepsen}
 \begin{frame}[t]
-  \frametitle{Jepsen: 分散システムのテストフレームワーク}
+  \frametitle{Jepsen: 分散システムのテストフレームワーク\cite{jepsen}}
   {\large Jepsenはフォールトインジェクションを効率化する}
 \end{frame}
 \begin{frame}[t]
@@ -31,13 +32,33 @@
 \end{frame}
 \begin{frame}[t]
   \frametitle{テスト対象を評価するときの課題}
-  {\large 一貫性と可用性のありえるペアを決めること}
+  {\large 特性の違うシステムを比べ方をきめる}
   % capが粒度が小さいことを意味しよう
 \end{frame}
 \section{一貫性と可用性のパターン}
 \begin{frame}[t]
-  \frametitle{a}
-  {\large 一貫性と可用性のありえるペアを決めること}
+  \frametitle{トレードオフの一貫性と可用性で比べる}
+  {\large 一貫性と可用性のペアは半順序関係になる}
   % capが粒度が小さいことを意味しよう
+\end{frame}
+\begin{frame}[t]
+  \frametitle{\normalsize{Highly Available Transactions Virtues and Limitations\cite{high}}}
+  {\large 一貫性と両立できる可用性のペアを半順序関係に整理}
+  % capが粒度が小さいことを意味しよう
+\end{frame}
+\begin{frame}[t]
+  \frametitle{2種類の可用性}
+  {\large Sticky AvailabilityはHigh availablityの必要条件}
+  % capが粒度が小さいことを意味しよう
+\end{frame}
+\begin{frame}[t]
+  \frametitle{くらべられるペアの例}
+  {\large WFR, causal, linearizable}
+  % capが粒度が小さいことを意味しよう
+\end{frame}
+\begin{frame}[allowframebreaks,t]
+  \frametitle{参考資料}
+  \printbibliography
+  \nocite{*}
 \end{frame}
 \end{document}
