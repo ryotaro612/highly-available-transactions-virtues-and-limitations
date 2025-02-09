@@ -39,7 +39,7 @@
   \frametitle{Jepsenの高い認知}
   {\large 今日までに45のストレージがテストされた\cite{jepsen-analysis}}
   \begin{itemize}
-  \item 例
+  \item テスト対象の抜粋
     \begin{itemize}
     \item etcd
     \item PostgresSQL
@@ -68,25 +68,48 @@
   \end{itemize}
 \end{frame}
 \section{一貫性と可用性のパターン}
-\begin{frame}[t]
-  \frametitle{トレードオフの一貫性と可用性で比べる}
-  {\large 一貫性と可用性のペアは半順序関係になる}
-  % capが粒度が小さいことを意味しよう
-\end{frame}
-\begin{frame}[t]
+% \begin{frame}[t]
+%   \frametitle{トレードオフの一貫性と可用性で比べる}
+%   {\large 一貫性と可用性のペアは半順序関係になる}
+% \end{frame}
+\begin{frame}
   \frametitle{\normalsize{Highly Available Transactions Virtues and Limitations\cite{high}}}
   {\large 一貫性と両立できる可用性のペアを半順序関係に整理}
-  % capが粒度が小さいことを意味しよう
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+      \item {\small 長さに上限のないネットワークの分断があることを前提}
+      \item {\small ノードは一貫性を表現}
+      \item {\small 枠の形状は可用性の種類を表現}
+      \item {\small 楕円は実現できないペア}        
+      \item {\small Jepsenに同様の図と一貫性の解説がある\cite{jepsen-models}}
+      \end{itemize}
+    \end{column}    
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \includegraphics[width=1\textwidth]{images/hat.png}
+        \caption{一貫性と可用性のペアの強さ\cite{high}}
+      \end{figure}
+    \end{column} 
+  \end{columns}
 \end{frame}
-\begin{frame}[t]
+\begin{frame}
   \frametitle{2種類の可用性}
   {\large Sticky AvailabilityはHigh availablityの必要条件}
-  % capが粒度が小さいことを意味しよう
+  \begin{description}
+  \item[Sticky Availability] クライアントによる過去の全操作を反映したレプリカがあり、そのレプリカにトランザクションを実行するとき、クライアントに応答が返る
+  \item[High Availability] すべてのクライアントがリクエストの送り先の正常なサーバから応答を受けとれる
+  \end{description}
+  どちら可用性も応答にかかる時間は問わない
 \end{frame}
-\begin{frame}[t]
+\begin{frame}
   \frametitle{くらべられるペアの例}
-  {\large WFR, causal, linearizable}
-  % capが粒度が小さいことを意味しよう
+  {\large WFR, causal, linearizableは強さに関係がある}
+  \begin{description}
+  \item[WFR] プロセスがトランザクション$T_1$の後に$T_2$をコミットした場合に別のプロセスは$T_2$の結果を$T_1$の結果より先に参照できない
+  \item[causal] すべてのプロセスが因果関係のあるの操作の同一な前後関係を観察していることを保証する。 一方、因果関係のない操作間はプロセスごとに異なる順序で観測されうる。
+  \item[linearizable] 読み書き操作がアトミックであるように観測でき、かつ、すべてのプロセスの実行を仮に直列化したときと同じ実行結果になる
+  \end{description}
 \end{frame}
 \begin{frame}[allowframebreaks,t]
   \frametitle{参考資料}
