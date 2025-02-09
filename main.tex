@@ -22,7 +22,18 @@
 \section{Jepsen}
 \begin{frame}[t]
   \frametitle{Jepsen: 分散システムのテストフレームワーク\cite{jepsen}}
-  {\large Jepsenはフォールトインジェクションを効率化する}
+  {\large Jepsenはフォールトインジェクションに特化}
+  \begin{itemize}
+  \item Clojureのライブラリ
+  \item テストケースは次のProtocolの実装
+    \begin{itemize}
+    \item 分散システムのクライアント
+    \item 起こしたい障害
+    \item クライアントの操作と障害のスケジュール
+    \item 実行結果の確認
+    \end{itemize}
+  \item Jepsenに実装を呼出、実行結果の保存、再現をまかせる
+  \end{itemize}
 \end{frame}
 \begin{frame}[t]
   \frametitle{Jepsenの高い認知}
