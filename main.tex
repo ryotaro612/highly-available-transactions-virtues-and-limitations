@@ -37,7 +37,7 @@
 \end{frame}
 \begin{frame}
   \frametitle{Jepsenの認知度}
-  {\large 今日までに45のシステムがテストされた\supercite{jepsen-analysis}}
+  {\large テストしたシステムの数は45\supercite{jepsen-analysis}}
   \begin{itemize}
   \item テスト対象の例
     \begin{itemize}
@@ -53,16 +53,15 @@
 \begin{frame}
   \frametitle{テスト対象を評価するときの課題}
   {\large どの一貫性と可用性のペアなら実装できるのか}
-  \vspace{8pt}
-  \begin{description}[font=\normalfont\underline,leftmargin=0.8cm]
-  \item[{\large CAP定理の問題}]
+  \begin{description}[font=\normalfont\underline]
+  \item[CAP定理の問題]
   \begin{itemize}[leftmargin=0cm,topsep=0pt,before=\leavevmode\vspace{8pt}]
   \item CAP定理\supercite{cap}の一貫性は線形化可能性\supercite{linearizability} 
-  \item ほかの一貫性のモデルの参考にならない
-  \item トリレンマではなく一貫性と可用性のトレードオフ\supercite{cap-twelve-years-later}
+  \item 線形化可能性以外の一貫性のモデルは対象外
+  \item トリレンマではない。一貫性と可用性のトレードオフ\supercite{cap-twelve-years-later}
     \begin{itemize}
-    \item ネットワーク障害時に一貫性と可用性の優先度を問う
-    \item 二者択一ではなく、複数の候補がある
+    \item ネットワーク障害時の一貫性と可用性の優先度を問う
+    \item 二者択一ではない。複数の候補がある
     \end{itemize}
   \item 複数の矛盾する可用性の定義\supercite{kleppmann}    
   \end{itemize}    
@@ -78,9 +77,9 @@
       \begin{itemize}
       \item {\small ネットワークの無期限の分断を前提}
       \item {\small ノードは一貫性を表現}
-      \item {\small 枠の形状は可用性の種類を表現}
+      \item {\small 無枠はhigh availability, 青枠はSticky availability\footnote{意味は後述}}
       \item {\small 楕円は実現できないペア}        
-      \item {\small 同様の図がJepsenのサイトに\\一貫性の解説とともに掲載\supercite{jepsen-models}}
+      \item {\small Jepsenのサイトに一貫性の解説がある\supercite{jepsen-models}}
       \end{itemize}
     \end{column}    
     \begin{column}{0.5\textwidth}
@@ -92,21 +91,42 @@
   \end{columns}
 \end{frame}
 \begin{frame}
-  \frametitle{2種類の可用性}
-  {\large Sticky AvailabilityはHigh availablityの必要条件}
+  \frametitle{2つの可用性}
+  {\large Sticky availabilityはHigh availablityの必要条件}
   \begin{description}
-  \item[Sticky Availability] クライアントによる過去の全操作を反映したレプリカがあり、そのレプリカにトランザクションを実行するとき、クライアントに応答が返る
-  \item[High Availability] すべてのクライアントがリクエストの送り先の正常なサーバから応答を受けとれる
+  \item[Sticky Availability]
+    \begin{enumerate}[before=\leavevmode]
+    \item クライアントによる過去の全操作を反映したレプリカがある
+    \item クライアントが上のレプリカにトランザクションを実行する
+    \item クライアントに応答が返る
+    \end{enumerate}
+  \item[High Availability]
+    \begin{enumerate}[before=\leavevmode]
+    \item 1つ以上の正常なサーバがある
+    \item 上の1つにリクエストを送る
+    \item クライアントに応答が返る
+    \end{enumerate}
   \end{description}
   どちら可用性も応答にかかる時間は問わない
 \end{frame}
 \begin{frame}
-  \frametitle{くらべられるペアの例}
-  {\large WFR, causal, linearizableは強さに関係がある}
+  \frametitle{関係のあるペアの例}
+  {\large WFRとcausalには強さに関係がある}
   \begin{description}
-  \item[WFR] プロセスがトランザクション$T_1$の後に$T_2$をコミットした場合に別のプロセスは$T_2$の結果を$T_1$の結果より先に参照できない
-  \item[causal] すべてのプロセスが因果関係のあるの操作の同一な前後関係を観察していることを保証する。 一方、因果関係のない操作間はプロセスごとに異なる順序で観測されうる。
-  \item[linearizable] 読み書き操作がアトミックであるように観測でき、かつ、すべてのプロセスの実行を仮に直列化したときと同じ実行結果になる
+  \item[WFR (Writes Follow Reads, high availability)]
+    \begin{enumerate}[before=\leavevmode]
+    \item プロセスがトランザクション$T_1$をコミット
+     \item 次に$T_2$をコミット
+    \item 別のプロセスは$t_2$の結果を$t_1$の結果より前に参照できない
+    \end{enumerate}
+    % WFRをavailableなノードだけで実行するとcausalになる
+  \item[causal (sticky availability)]
+    \begin{enumerate}[before=\leavevmode]
+      % ランチの誘い
+    \item 因果関係のある操作の結果がすべてのプロセスから同じ順序で観測される
+    \item 因果関係のない操作の観測順序は同一とは限らない
+      \end{enumerate}
+  % \item[linearizable] 読み書き操作がアトミックであるように観測でき、かつ、すべてのプロセスの実行を仮に直列化したときと同じ実行結果になる
   \end{description}
 \end{frame}
 \begin{frame}[allowframebreaks,t]
