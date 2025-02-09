@@ -4,6 +4,17 @@ title = {Jepsen},
 url = {https://jepsen.io/},
 year = {2025}
 }
+@online{jepsen-analysis,
+title = {Jepsen Analysis},
+url = {https://jepsen.io/analyses},
+year = {2025}
+}
+@online{jepsen-etcd,
+title = {Latest Jepsen Results against etcd 3.4.3},
+url = {https://etcd.io/blog/2020/jepsen-343-results/},
+year = {2020}
+}
+
 
 @article{high,
 author = {Bailis, Peter and Davidson, Aaron and Fekete, Alan and Ghodsi, Ali and Hellerstein, Joseph M. and Stoica, Ion},
@@ -21,4 +32,55 @@ journal = {Proc. VLDB Endow.},
 month = nov,
 pages = {181–192},
 numpages = {12}
+}
+@inproceedings{cap,
+author = {Brewer, Eric A.},
+title = {Towards robust distributed systems (abstract)},
+year = {2000},
+isbn = {1581131836},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/343477.343502},
+doi = {10.1145/343477.343502},
+abstract = {Current distributed systems, even the ones that work, tend to be very fragile: they are hard to keep up, hard to manage, hard to grow, hard to evolve, and hard to program. In this talk, I look at several issues in an attempt to clean up the way we think about these systems. These issues include the fault model, high availability, graceful degradation, data consistency, evolution, composition, and autonomy.These are not (yet) provable principles, but merely ways to think about the issues that simplify design in practice. They draw on experience at Berkeley and with giant-scale systems built at Inktomi, including the system that handles 50\% of all web searches.},
+booktitle = {Proceedings of the Nineteenth Annual ACM Symposium on Principles of Distributed Computing},
+pages = {7},
+location = {Portland, Oregon, USA},
+series = {PODC '00}
+}
+@article{linearizability,
+author = {Herlihy, Maurice P. and Wing, Jeannette M.},
+title = {Linearizability: a correctness condition for concurrent objects},
+year = {1990},
+issue_date = {July 1990},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {12},
+number = {3},
+issn = {0164-0925},
+url = {https://doi.org/10.1145/78969.78972},
+doi = {10.1145/78969.78972},
+abstract = {A concurrent object is a data object shared by concurrent processes. Linearizability is a correctness condition for concurrent objects that exploits the semantics of abstract data types. It permits a high degree of concurrency, yet it permits programmers to specify and reason about concurrent objects using known techniques from the sequential domain. Linearizability provides the illusion that each operation applied by concurrent processes takes effect instantaneously at some point between its invocation and its response, implying that the meaning of a concurrent object's operations can be given by pre- and post-conditions. This paper defines linearizability, compares it to other correctness conditions, presents and demonstrates a method for proving the correctness of implementations, and shows how to reason about concurrent objects, given they are linearizable.},
+journal = {ACM Trans. Program. Lang. Syst.},
+month = jul,
+pages = {463–492},
+numpages = {30}
+}
+@article{cap-twelve-years-later,
+  author={Brewer, Eric},
+  journal={Computer}, 
+  title={CAP twelve years later: How the "rules" have changed}, 
+  year={2012},
+  volume={45},
+  number={2},
+  pages={23-29},
+  keywords={Distributed databases;Relational databases;Data processing;Cloud computing;CAP theorem;ACID;BASE;cloud computing},
+  doi={10.1109/MC.2012.37}
+  }
+
+@book{kleppmann,
+  author    = {Martin Kleppmann},
+  title     = {Designing Data-Intensive Applications},
+  publisher = {O'Reilly Media, Inc.},
+  year      = {2017}
 }

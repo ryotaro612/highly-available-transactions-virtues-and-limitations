@@ -20,7 +20,7 @@
 \titlepage
 \end{frame}
 \section{Jepsen}
-\begin{frame}[t]
+\begin{frame}
   \frametitle{Jepsen: 分散システムのテストフレームワーク\cite{jepsen}}
   {\large Jepsenはフォールトインジェクションに特化}
   \begin{itemize}
@@ -35,16 +35,37 @@
   \item Jepsenに実装を呼出、実行結果の保存、再現をまかせる
   \end{itemize}
 \end{frame}
-\begin{frame}[t]
+\begin{frame}
   \frametitle{Jepsenの高い認知}
-  {\large 今日までに45のストレージがテストされた}
-  \par
-  テスト対象側のetcdからもJepsenに言及がある
+  {\large 今日までに45のストレージがテストされた\cite{jepsen-analysis}}
+  \begin{itemize}
+  \item 例
+    \begin{itemize}
+    \item etcd
+    \item PostgresSQL
+    \item MongoDB
+    \item Elasticsearch
+    \item Cassandra
+    \end{itemize}
+  \item テスト対象側のetcdからもJepsenへの言及がある\cite{jepsen-etcd}
+  \end{itemize}
 \end{frame}
-\begin{frame}[t]
+\begin{frame}
   \frametitle{テスト対象を評価するときの課題}
-  {\large 特性の違うシステムを比べ方をきめる}
-  % capが粒度が小さいことを意味しよう
+  {\large 両立できる一貫性と可用性の強さを知ること}
+  \par
+  \vspace{8pt}
+  CAP定理の問題
+  \begin{itemize}
+  \item CAP定理\cite{cap}の一貫性は線形化可能性\cite{linearizability}
+  \item ほかの一貫性のモデルの参考にならない
+  \item トリレンマではなく一貫性と可用性のトレードオフ\cite{cap-twelve-years-later}
+    \begin{itemize}
+    \item ネットワーク障害時に一貫性と可用性どちらを優先するかが問題
+    \item 一貫性と可用性の選択は二者択一ではなく、複数の候補がある
+    \end{itemize}
+  \item 可用性の定義に矛盾した複数の定義がある\cite{kleppmann}    
+  \end{itemize}
 \end{frame}
 \section{一貫性と可用性のパターン}
 \begin{frame}[t]
