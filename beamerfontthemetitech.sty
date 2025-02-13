@@ -6,7 +6,7 @@
 %\renewcommand{\kanjifamilydefault}{\gtdefault}
 %\renewcommand{\emph}[1]{{\upshape\bfseries #1}}
 % \setmainjfont{Hiragino Sans}
-\setmainjfont{BIZ UDGothic}
+\setmainjfont{BIZ UDPGothic}
 
 % \setmainjfont{Noto Sans JP}
 
@@ -15,4 +15,6 @@
 \setmonofont{JetBrainsMono}
 \setmonojfont{SourceHanCodeJP}
 % 参考文献の文字を小さくする
-\AtBeginBibliography{\small \fontspec{Minion Pro}\jfontspec{BIZ UDMincho}}
+% urlのサイズを同じにする https://latex.org/forum/viewtopic.php?t=4191
+\urlstyle{same}
+\AtBeginBibliography{\small \fontspec{Minion Pro}\jfontspec{BIZ UDPMincho}}

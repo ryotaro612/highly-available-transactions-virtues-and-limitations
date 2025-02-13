@@ -51,17 +51,17 @@
   \end{itemize}
 \end{frame}
 \begin{frame}
-  \frametitle{テスト対象を評価するときの課題}
-  {\large どの一貫性と可用性のペアなら実装できるのか}
-  \begin{description}[font=\normalfont\underline]
-  \item[CAP定理の問題]
+  \frametitle{フォールトインジェクションによる分散システムの評価}
+  {\large 一貫性と可用性を評価すること}
+  \begin{description}[font=\normalfont]
+  \item[\textcolor{highlight}{CAP定理の問題}]
   \begin{itemize}[leftmargin=0cm,topsep=0pt,before=\leavevmode\vspace{8pt}]
   \item CAP定理\supercite{cap}の一貫性は線形化可能性\supercite{linearizability} 
-  \item 線形化可能性以外の一貫性のモデルは対象外
+  \item 線形化可能性以外の一貫性のモデルはCAP定理の対象外
   \item トリレンマではない。一貫性と可用性のトレードオフ\supercite{cap-twelve-years-later}
     \begin{itemize}
     \item ネットワーク障害時の一貫性と可用性の優先度を問う
-    \item 二者択一ではない。複数の候補がある
+    \item 二者択一ではない。多様なバランスの取り方
     \end{itemize}
   \item 複数の矛盾する可用性の定義\supercite{kleppmann}    
   \end{itemize}    
@@ -77,7 +77,7 @@
       \begin{itemize}
       \item {\small ネットワークの無期限の分断を前提}
       \item {\small ノードは一貫性を表現}
-      \item {\small 無枠はhigh availability,\\青枠はSticky availability\footnote{意味は後述}}
+      \item {\small 無枠はhigh availability,\\四角枠はSticky availability\footnote{意味は後述}}
       \item {\small 楕円は実現できないペア}        
       \item {\small Jepsenのサイトに一貫性の\\解説がある\supercite{jepsen-models}}
       \end{itemize}
@@ -91,16 +91,16 @@
   \end{columns}
 \end{frame}
 \begin{frame}
-  \frametitle{2つの可用性}
+  \frametitle{例題: 2つの可用性}
   {\large Sticky availabilityはHigh availablityの必要条件}
   \begin{description}
-  \item[Sticky Availability]
+  \item[\textcolor{highlight}{Sticky Availability}]
     \begin{enumerate}[before=\leavevmode]
     \item クライアントによる過去の全操作を反映したレプリカがある
     \item クライアントが上のレプリカにトランザクションを実行する
     \item クライアントに応答が返る
     \end{enumerate}
-  \item[High Availability]
+  \item[\textcolor{highlight}{High Availability}]
     \begin{enumerate}[before=\leavevmode]
     \item 1つ以上の正常なサーバがある
     \item 上の1つにリクエストを送る
@@ -113,14 +113,14 @@
   \frametitle{関係のあるペアの例}
   {\large WFRとcausalには強さに関係がある}
   \begin{description}
-  \item[WFR (Writes Follow Reads, high availability)]
+  \item[\textcolor{highlight}{WFR (Writes Follow Reads, high availability)}]
     \begin{enumerate}[before=\leavevmode]
     \item プロセスがトランザクション$T_1$をコミット
      \item 次に$T_2$をコミット
     \item 別のプロセスは$t_2$の結果を$t_1$の結果より前に参照できない
     \end{enumerate}
     % WFRをavailableなノードだけで実行するとcausalになる
-  \item[causal (sticky availability)]
+  \item[\textcolor{highlight}{causal (sticky availability)}]
     \begin{enumerate}[before=\leavevmode]
       % ランチの誘い
     \item 因果関係のある操作の結果がすべてのプロセスから同じ順序で観測される
